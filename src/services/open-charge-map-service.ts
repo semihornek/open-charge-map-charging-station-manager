@@ -2,6 +2,7 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 
 import { POIListInterface } from '../interfaces';
+import { OPEN_CHARGE_MAP_API_URL } from '../constants';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -13,13 +14,12 @@ export class OpenChargeMapService {
     this.apiKey = process.env.OPEN_CHARGE_MAP_API_KEY!;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async fetchChargingStationData(
     page: number = 1,
-    maxResults: number = 10,
+    maxResults: number = 2,
   ): Promise<POIListInterface[]> {
     try {
-      const response = await axios.get('https://api.openchargemap.io/v3/poi', {
+      const response = await axios.get(OPEN_CHARGE_MAP_API_URL, {
         params: {
           output: 'json',
           key: this.apiKey,

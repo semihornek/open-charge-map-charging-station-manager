@@ -1,8 +1,14 @@
-import { OpenChargeMapService } from './src/services';
+import { ApolloServer } from '@apollo/server';
+import { startStandaloneServer } from '@apollo/server/standalone';
 
-const openChargeMapService = new OpenChargeMapService();
+import { typeDefs } from './src/graphql/schema';
+import resolvers from './src/graphql/resolvers';
+
+const server = new ApolloServer({ typeDefs, resolvers });
 
 (async () => {
-  const result = await openChargeMapService.fetchChargingStationData();
-  console.log(result);
+  const { url } = await startStandaloneServer(server, {
+    listen: { port: 4000 },
+  });
+  console.log(`🚀  Server ready at: ${url}`);
 })();
