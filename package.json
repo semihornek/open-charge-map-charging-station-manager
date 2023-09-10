@@ -1,0 +1,38 @@
+{
+  "name": "open-charge-map-charging-station-manager",
+  "version": "1.0.0",
+  "description": "An API integration project for accessing and updating charging station data from Open Charge Map.",
+  "main": "index.ts",
+  "repository": "https://github.com/semihornek/open-charge-map-charging-station-manager",
+  "author": "Semih Örnek",
+  "license": "MIT",
+  "dependencies": {
+    "@types/mongodb": "^4.0.7",
+    "@types/node": "^20.6.0",
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@typescript-eslint/eslint-plugin": "^6.6.0",
+    "@typescript-eslint/parser": "^6.6.0",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "husky": "^8.0.3",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.0.3",
+    "ts-node": "^10.9.1"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "scripts": {
+    "start": "node dist/app.js",
+    "start-dev": "nodemon --exec ts-node app.ts",
+    "build": "tsc",
+    "lint": "eslint . --ext .js,.ts"
+  }
+}
