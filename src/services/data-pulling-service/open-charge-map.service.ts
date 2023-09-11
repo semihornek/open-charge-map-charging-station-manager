@@ -1,8 +1,8 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
 
-import { POIListInterface } from '../interfaces';
-import { OPEN_CHARGE_MAP_API_URL } from '../constants';
+import { POIListInterface } from '../../interfaces';
+import { OPEN_CHARGE_MAP_API_URL } from '../../constants';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -36,9 +36,9 @@ export class OpenChargeMapService {
 
       return data;
     } catch (error) {
-      const errorMessage = 'Failed to fetch charging station data';
-      if (error instanceof Error) throw new Error(`${errorMessage}: ${error.message}`);
-      else throw new Error(errorMessage);
+      if (error instanceof Error)
+        throw new Error(`'Failed to fetch charging station data': ${error.message}`);
+      else throw new Error('Failed to fetch charging station data');
     }
   }
 }

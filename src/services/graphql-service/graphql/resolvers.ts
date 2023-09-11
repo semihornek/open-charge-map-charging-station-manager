@@ -1,12 +1,9 @@
-import { OpenChargeMapService } from '../services';
-
-const openChargeMapService = new OpenChargeMapService(); // Instantiate the service
-
 const resolvers = {
   Query: {
     chargingStations: async () => {
       try {
-        const chargingStations = await openChargeMapService.fetchChargingStationData();
+        // TODO: Fetch the charging stations from the db
+        const chargingStations = null;
         return chargingStations;
       } catch (error) {
         const errorMessage = 'Failed to fetch charging station data';
