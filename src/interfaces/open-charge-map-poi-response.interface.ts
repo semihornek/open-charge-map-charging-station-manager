@@ -1,6 +1,6 @@
 export interface POIListInterface {
-  OperatorInfo: object;
-  StatusType: object;
-  AddressInfo: object;
-  Connections: object;
+  operatorInfo: object;
+  statusType: object;
+  addressInfo: object;
+  connections: Array<object>;
 }

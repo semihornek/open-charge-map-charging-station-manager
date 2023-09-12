@@ -1,7 +1,7 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
 
-import { POIListInterface } from '../../interfaces';
+import { ChargingStationInterface, POIListInterface } from '../../interfaces';
 import { OPEN_CHARGE_MAP_API_URL } from '../../constants';
 
 // Load environment variables from .env file
@@ -17,7 +17,7 @@ export class OpenChargeMapService {
   async fetchChargingStationData(
     page: number = 1,
     maxResults: number = 2,
-  ): Promise<POIListInterface[]> {
+  ): Promise<ChargingStationInterface[]> {
     try {
       const response = await axios.get(OPEN_CHARGE_MAP_API_URL, {
         params: {
@@ -25,19 +25,20 @@ export class OpenChargeMapService {
           key: this.apiKey,
           page: page,
           maxresults: maxResults,
+          camelcase: true,
         },
       });
-      const data: POIListInterface[] = response.data.map((res: POIListInterface) => ({
-        OperatorInfo: res.OperatorInfo,
-        StatusType: res.StatusType,
-        AddressInfo: res.AddressInfo,
-        Connections: res.Connections,
+      const data: ChargingStationInterface[] = response.data.map((res: POIListInterface) => ({
+        operatorInfo: res.operatorInfo,
+        statusType: res.statusType,
+        addressInfo: res.addressInfo,
+        connections: res.connections,
       }));
 
       return data;
     } catch (error) {
       if (error instanceof Error)
-        throw new Error(`'Failed to fetch charging station data': ${error.message}`);
+        throw new Error(`Failed to fetch charging station data: ${error.message}`);
       else throw new Error('Failed to fetch charging station data');
     }
   }

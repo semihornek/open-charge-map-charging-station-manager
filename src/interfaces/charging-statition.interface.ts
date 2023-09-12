@@ -1,84 +1,84 @@
 import { Document } from 'mongoose';
 
 interface OperatorInfo {
-  WebsiteURL?: string | null;
-  Comments?: string | null;
-  PhonePrimaryContact?: string | null;
-  PhoneSecondaryContact?: string | null;
-  IsPrivateIndividual?: boolean | null;
-  AddressInfo?: AddressInfo | null;
-  BookingURL?: string | null;
-  ContactEmail?: string | null;
-  FaultReportEmail?: string | null;
-  IsRestrictedEdit?: boolean | null;
-  ID?: number | null;
-  Title?: string | null;
+  websiteUrl?: string | null;
+  comments?: string | null;
+  phonePrimaryContact?: string | null;
+  phoneSecondaryContact?: string | null;
+  isPrivateIndividual?: boolean | null;
+  addressInfo?: AddressInfo | null;
+  bookingUrl?: string | null;
+  contactEmail?: string | null;
+  faultReportEmail?: string | null;
+  isRestrictedEdit?: boolean | null;
+  id?: number | null;
+  title?: string | null;
 }
 
 interface StatusType {
-  IsOperational?: boolean | null;
-  IsUserSelectable?: boolean | null;
-  ID?: number | null;
-  Title?: string | null;
+  isOperational?: boolean | null;
+  isUserSelectable?: boolean | null;
+  id?: number | null;
+  title?: string | null;
 }
 
 interface AddressInfo {
-  ID?: number | null;
-  Title?: string | null;
-  AddressLine1?: string | null;
-  AddressLine2?: string | null;
-  Town?: string | null;
-  StateOrProvince?: string | null;
-  Postcode?: string | null;
-  CountryID?: number | null;
-  Country?: {
-    ISOCode?: string | null;
-    ContinentCode?: string | null;
-    ID?: number | null;
-    Title?: string | null;
+  id?: number | null;
+  title?: string | null;
+  addressLine1?: string | null;
+  addressLine2?: string | null;
+  town?: string | null;
+  stateOrProvince?: string | null;
+  postcode?: string | null;
+  countryId?: number | null;
+  country?: {
+    isoCode?: string | null;
+    continentCode?: string | null;
+    id?: number | null;
+    title?: string | null;
   } | null;
-  Latitude?: number | null;
-  Longitude?: number | null;
-  ContactTelephone1?: string | null;
-  ContactTelephone2?: string | null;
-  ContactEmail?: string | null;
-  AccessComments?: string | null;
-  RelatedURL?: string | null;
-  Distance?: number | null;
-  DistanceUnit?: number | null;
+  latitude?: number | null;
+  longitude?: number | null;
+  contactTelephone1?: string | null;
+  contactTelephone2?: string | null;
+  contactEmail?: string | null;
+  accessComments?: string | null;
+  relatedUrl?: string | null;
+  distance?: number | null;
+  distanceUnit?: number | null;
 }
 
 interface Connection {
-  ID?: number | null;
-  ConnectionTypeID?: number | null;
-  ConnectionType?: {
-    FormalName?: string | null;
-    IsDiscontinued?: boolean | null;
-    IsObsolete?: boolean | null;
-    ID?: number | null;
-    Title?: string | null;
+  id?: number | null;
+  connectionTypeId?: number | null;
+  connectionType?: {
+    formalName?: string | null;
+    isDiscontinued?: boolean | null;
+    isObsolete?: boolean | null;
+    id?: number | null;
+    title?: string | null;
   } | null;
-  Reference?: string | null;
-  StatusTypeID?: number | null;
-  StatusType?: StatusType | null;
-  LevelID?: number | null;
-  Level?: {
-    Comments?: string | null;
-    IsFastChargeCapable?: boolean | null;
-    ID?: number | null;
-    Title?: string | null;
+  reference?: string | null;
+  statusTypeId?: number | null;
+  statusType?: StatusType | null;
+  levelId?: number | null;
+  level?: {
+    comments?: string | null;
+    isFastChargeCapable?: boolean | null;
+    id?: number | null;
+    title?: string | null;
   } | null;
-  Amps?: number | null;
-  Voltage?: number | null;
-  PowerKW?: number | null;
-  CurrentTypeID?: number | null;
-  CurrentType?: {
-    Description?: string | null;
-    ID?: number | null;
-    Title?: string | null;
+  amps?: number | null;
+  voltage?: number | null;
+  powerKW?: number | null;
+  currentTypeId?: number | null;
+  currentType?: {
+    description?: string | null;
+    id?: number | null;
+    title?: string | null;
   } | null;
-  Quantity?: number | null;
-  Comments?: string | null;
+  quantity?: number | null;
+  comments?: string | null;
 }
 
 export interface ChargingStationInterface extends Document {
@@ -86,5 +86,5 @@ export interface ChargingStationInterface extends Document {
   operatorInfo: OperatorInfo;
   statusType: StatusType;
   addressInfo: AddressInfo;
-  Connections: Connection[];
+  connections: Connection[];
 }
