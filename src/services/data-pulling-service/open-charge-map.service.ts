@@ -14,21 +14,17 @@ export class OpenChargeMapService {
     this.apiKey = process.env.OPEN_CHARGE_MAP_API_KEY!;
   }
 
-  async fetchChargingStationData(
-    page: number = 1,
-    maxResults: number = 2,
-  ): Promise<ChargingStationInterface[]> {
+  async fetchChargingStationData(): Promise<ChargingStationInterface[]> {
     try {
       const response = await axios.get(OPEN_CHARGE_MAP_API_URL, {
         params: {
           output: 'json',
           key: this.apiKey,
-          page: page,
-          maxresults: maxResults,
           camelcase: true,
         },
       });
       const data: ChargingStationInterface[] = response.data.map((res: POIListInterface) => ({
+        _id: res.uuid,
         operatorInfo: res.operatorInfo,
         statusType: res.statusType,
         addressInfo: res.addressInfo,

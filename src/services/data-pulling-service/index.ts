@@ -18,6 +18,6 @@ const fetchData = async () => {
   }
 };
 
-setInterval(fetchData, DATA_PULLING_INTERVAL / 60);
+setInterval(fetchData, DATA_PULLING_INTERVAL / 10);
 
 console.log('Data pulling scheduled to run every 5 minutes...');
