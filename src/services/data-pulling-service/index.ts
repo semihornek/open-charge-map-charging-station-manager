@@ -7,17 +7,23 @@ const databaseService = new DatabaseService();
 
 const fetchData = async () => {
   try {
-    const data = await openChargeMapService.fetchChargingStationData();
+    const chargingStations = await openChargeMapService.fetchChargingStationData();
 
-    await databaseService.saveChargingStationData(data);
+    for (const chargingStation of chargingStations) {
+      const isExistingStation = await databaseService.findIfChargingStationExists(
+        chargingStation._id,
+      );
+      !isExistingStation && (await databaseService.saveChargingStationData(chargingStation));
+    }
 
-    console.log('Data pulled and updated successfully.');
+    console.log('Data pulled from the API, and the DB updated successfully!');
   } catch (error) {
-    if (error instanceof Error) console.error(`Error pulling data: ${error.message}`);
-    else console.error('Error pulling data');
+    if (error instanceof Error)
+      console.error(`Error pulling data, and updating the DB: ${error.message}`);
+    else console.error('Error pulling data, and updating the DB');
   }
 };
 
-setInterval(fetchData, DATA_PULLING_INTERVAL / 10);
+setInterval(fetchData, DATA_PULLING_INTERVAL / 20);
 
 console.log('Data pulling scheduled to run every 5 minutes...');

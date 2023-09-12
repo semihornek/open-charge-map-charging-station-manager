@@ -17,11 +17,7 @@ export class OpenChargeMapService {
   async fetchChargingStationData(): Promise<ChargingStationInterface[]> {
     try {
       const response = await axios.get(OPEN_CHARGE_MAP_API_URL, {
-        params: {
-          output: 'json',
-          key: this.apiKey,
-          camelcase: true,
-        },
+        params: { output: 'json', key: this.apiKey, camelcase: true, maxresults: 2 },
       });
       const data: ChargingStationInterface[] = response.data.map((res: POIListInterface) => ({
         _id: res.uuid,

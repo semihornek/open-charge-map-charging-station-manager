@@ -10,7 +10,7 @@ export class DatabaseService {
     this.connect();
   }
 
-  private async connect() {
+  private async connect(): Promise<void> {
     try {
       await mongoose.connect(this.uri);
       console.log('Connected to MongoDB');
@@ -21,10 +21,9 @@ export class DatabaseService {
     }
   }
 
-  async saveChargingStationData(data: ChargingStationInterface[]) {
+  async saveChargingStationData(data: ChargingStationInterface): Promise<void> {
     try {
-      await ChargingStationModel.insertMany(data);
-      console.log('Charging station data saved to the database');
+      await ChargingStationModel.create(data);
     } catch (error) {
       if (error instanceof Error)
         throw new Error(`Error saving charging station data: ${error.message}`);
@@ -32,13 +31,13 @@ export class DatabaseService {
     }
   }
 
-  async findChargingStations() {
+  async findIfChargingStationExists(id: string): Promise<boolean> {
     try {
-      const chargingStations = await ChargingStationModel.find().exec();
-      return chargingStations;
+      const chargingStations = await ChargingStationModel.exists({ _id: id });
+      return !!chargingStations;
     } catch (error) {
       console.error('Error finding charging stations:', error);
-      return [];
+      return false;
     }
   }
 }
