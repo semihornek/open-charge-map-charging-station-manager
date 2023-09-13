@@ -7,14 +7,14 @@ export class DatabaseService {
   private static instance: DatabaseService | null = null;
   private isConnected: boolean = false;
 
-  private constructor() {
-    this.uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/open_charge_map';
+  private constructor(url: string | null = null) {
+    this.uri = url || process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/open_charge_map';
     this.connect();
   }
 
-  static getInstance(): DatabaseService {
+  static getInstance(url: string | null = null): DatabaseService {
     if (!DatabaseService.instance) {
-      DatabaseService.instance = new DatabaseService();
+      DatabaseService.instance = new DatabaseService(url);
     }
     return DatabaseService.instance;
   }
@@ -47,7 +47,8 @@ export class DatabaseService {
       const chargingStations = await ChargingStationModel.exists({ _id: id });
       return !!chargingStations;
     } catch (error) {
-      console.error('Error finding charging stations:', error);
+      if (error instanceof Error) console.error('Error finding charging stations:', error.message);
+      else console.error('Error finding charging stations');
       return false;
     }
   }

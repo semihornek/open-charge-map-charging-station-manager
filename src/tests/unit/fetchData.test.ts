@@ -34,18 +34,15 @@ describe('DataFetcher', () => {
   });
 
   afterEach(() => {
-    // Clear mock calls and reset any mocked state before each test
     jest.clearAllMocks();
   });
 
   it('should fetch charging station data and update the database', async () => {
-    // Mock the behavior of the services
     openChargeMapServiceMock.fetchChargingStationData.mockResolvedValue([mockChargingStationData]);
     databaseServiceMock.findIfChargingStationExists.mockResolvedValue(false);
 
     await dataFetcher.fetchData();
 
-    // Assertions
     expect(openChargeMapServiceMock.fetchChargingStationData).toHaveBeenCalledTimes(1);
     expect(databaseServiceMock.findIfChargingStationExists).toHaveBeenCalledTimes(1);
     expect(databaseServiceMock.saveChargingStationData).toHaveBeenCalledTimes(1);
@@ -56,12 +53,10 @@ describe('DataFetcher', () => {
   });
 
   it('should handle errors', async () => {
-    // Mock the behavior of the services to simulate an error
     openChargeMapServiceMock.fetchChargingStationData.mockRejectedValue(new Error('API error'));
 
     await dataFetcher.fetchData();
 
-    // Assertions
     expect(consoleLogSpy).not.toHaveBeenCalled();
     expect(consoleErrorSpy).toHaveBeenCalledWith(
       'Error pulling data, and updating the DB: API error',
