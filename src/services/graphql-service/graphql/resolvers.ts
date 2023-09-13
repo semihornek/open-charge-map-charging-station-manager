@@ -1,9 +1,11 @@
+import { DatabaseService } from '../../database.service';
+
+const databaseService = DatabaseService.getInstance();
 const resolvers = {
   Query: {
     chargingStations: async () => {
       try {
-        // TODO: Fetch the charging stations from the db
-        const chargingStations = null;
+        const chargingStations = await databaseService.getChargingStations();
         return chargingStations;
       } catch (error) {
         const errorMessage = 'Failed to fetch charging station data';

@@ -101,6 +101,7 @@ const typeDefs = `
   
   # This "ChargingStation" type defines the fields for ChargingStation.
   type ChargingStation {
+    _id: String
     operatorInfo: OperatorInfo
     statusType: StatusType
     addressInfo: AddressInfo

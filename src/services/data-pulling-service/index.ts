@@ -1,9 +1,9 @@
 import { DATA_PULLING_INTERVAL } from '../../constants';
-import { DatabaseService } from './database.service';
+import { DatabaseService } from '../database.service';
 import { OpenChargeMapService } from './open-charge-map.service';
 
 const openChargeMapService = new OpenChargeMapService();
-const databaseService = new DatabaseService();
+const databaseService = DatabaseService.getInstance();
 
 const fetchData = async () => {
   try {
