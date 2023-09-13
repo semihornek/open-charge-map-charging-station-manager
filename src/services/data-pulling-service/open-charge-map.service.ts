@@ -8,16 +8,17 @@ import { OPEN_CHARGE_MAP_API_URL } from '../../constants';
 dotenv.config();
 
 export class OpenChargeMapService {
-  private apiKey: string;
-
-  constructor() {
-    this.apiKey = process.env.OPEN_CHARGE_MAP_API_KEY!;
-  }
+  constructor() {}
 
   async fetchChargingStationData(): Promise<ChargingStationInterface[]> {
     try {
       const response = await axios.get(OPEN_CHARGE_MAP_API_URL, {
-        params: { output: 'json', key: this.apiKey, camelcase: true, maxresults: 2 },
+        params: {
+          output: 'json',
+          key: process.env.OPEN_CHARGE_MAP_API_KEY,
+          camelcase: true,
+          maxresults: 2,
+        },
       });
       const data: ChargingStationInterface[] = response.data.map((res: POIListInterface) => ({
         _id: res.uuid,

@@ -1,5 +1,3 @@
-import { Document } from 'mongoose';
-
 interface OperatorInfo {
   websiteUrl?: string | null;
   comments?: string | null;
@@ -81,7 +79,7 @@ interface Connection {
   comments?: string | null;
 }
 
-export interface ChargingStationInterface extends Document {
+export interface ChargingStationInterface {
   _id: string;
   operatorInfo: OperatorInfo;
   statusType: StatusType;

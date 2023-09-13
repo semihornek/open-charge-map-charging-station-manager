@@ -1,6 +1,7 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { OpenChargeMapService } from '../../services/data-pulling-service/open-charge-map.service';
+import { mockChargingStationAxiosResponse } from '../mocks';
 
 describe('OpenChargeMapService', () => {
   let openChargeMapService: OpenChargeMapService;
@@ -16,15 +17,7 @@ describe('OpenChargeMapService', () => {
   });
 
   it('fetchChargingStationData should return charging station data', async () => {
-    const mockResponse = {
-      uuid: '123',
-      operatorInfo: { title: 'Operator' },
-      statusType: { title: 'Operational' },
-      addressInfo: { town: 'City' },
-      connections: [{ connectionType: { title: 'Type' } }],
-    };
-
-    axiosMock.onGet().reply(200, [mockResponse]);
+    axiosMock.onGet().reply(200, [mockChargingStationAxiosResponse]);
 
     const chargingStations = await openChargeMapService.fetchChargingStationData();
 

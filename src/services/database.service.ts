@@ -24,7 +24,6 @@ export class DatabaseService {
       try {
         await mongoose.connect(this.uri);
         this.isConnected = true;
-        console.log('Connected to MongoDB');
       } catch (error) {
         console.error(
           `Failed to connect to MongoDB${error instanceof Error && ': ' + error.message}`,
