@@ -46,8 +46,6 @@
     }
   },
   "scripts": {
-    "start": "node dist/app.js",
-    "start-dev": "nodemon --exec ts-node app.ts",
     "start-data-pull": "ts-node src/services/data-pulling-service/index.ts",
     "start-graphql-service": "ts-node src/services/graphql-service/index.ts",
     "build": "tsc",
