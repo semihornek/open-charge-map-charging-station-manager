@@ -17,7 +17,6 @@ export class OpenChargeMapService {
           output: 'json',
           key: process.env.OPEN_CHARGE_MAP_API_KEY,
           camelcase: true,
-          maxresults: 5,
         },
       });
       const data: ChargingStationInterface[] = response.data.map((res: POIListInterface) => ({

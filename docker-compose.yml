@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo
+    container_name: mongo-container
+    ports:
+      - '27017:27017'
+
+  data-pull-service:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.data-pull
+    container_name: data-pull-container
+    depends_on:
+      - mongo
+    environment:
+      OPEN_CHARGE_MAP_API_KEY: ff82541f-c8d1-4507-be67-bd07e3259c4e
+      MONGODB_URI: mongodb://host.docker.internal:27017/open_charge_map
+    restart: unless-stopped
+
+  graphql-service:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.graphql-service
+    container_name: graphql-service-container
+    depends_on:
+      - data-pull-service
+      - mongo
+    environment:
+      OPEN_CHARGE_MAP_API_KEY: ff82541f-c8d1-4507-be67-bd07e3259c4e
+      MONGODB_URI: mongodb://host.docker.internal:27017/open_charge_map
+    ports:
+      - '4000:4000'
+    restart: unless-stopped
