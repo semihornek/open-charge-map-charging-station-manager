@@ -1,8 +1,8 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
 
-import { ChargingStationInterface, POIListInterface } from '../../interfaces';
-import { OPEN_CHARGE_MAP_API_URL } from '../../constants';
+import { ChargingStationInterface, POIListInterface } from '../../../interfaces';
+import { OPEN_CHARGE_MAP_API_URL } from '../../../constants';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -17,7 +17,7 @@ export class OpenChargeMapService {
           output: 'json',
           key: process.env.OPEN_CHARGE_MAP_API_KEY,
           camelcase: true,
-          maxresults: 2,
+          maxresults: 5,
         },
       });
       const data: ChargingStationInterface[] = response.data.map((res: POIListInterface) => ({

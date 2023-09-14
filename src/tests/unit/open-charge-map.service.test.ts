@@ -1,6 +1,6 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { OpenChargeMapService } from '../../services/data-pulling-service/open-charge-map.service';
+import { OpenChargeMapService } from '../../services/data-pulling-service/api';
 import { mockChargingStationAxiosResponse } from '../mocks';
 
 describe('OpenChargeMapService', () => {
