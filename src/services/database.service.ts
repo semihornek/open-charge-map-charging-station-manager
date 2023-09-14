@@ -1,6 +1,9 @@
+import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import { ChargingStationInterface } from '../interfaces';
 import { ChargingStationModel } from '../models/charging-station.model';
+
+dotenv.config();
 
 export class DatabaseService {
   private readonly uri: string;
@@ -8,7 +11,7 @@ export class DatabaseService {
   private isConnected: boolean = false;
 
   private constructor(url: string | null = null) {
-    this.uri = url || process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/open_charge_map';
+    this.uri = url || process.env.MONGODB_URI!;
     this.connect();
   }
 
