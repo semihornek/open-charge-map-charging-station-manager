@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
-import { ChargingStationInterface } from '../../interfaces';
-import { ChargingStationModel } from '../../models';
-import { DatabaseService } from '../../services/database.service';
+import { ChargingStationInterface } from '../../src/interfaces';
+import { ChargingStationModel } from '../../src/models';
+import { DatabaseService } from '../../src/services/database.service';
 
 describe('DatabaseService E2E Tests', () => {
   let databaseService: DatabaseService;

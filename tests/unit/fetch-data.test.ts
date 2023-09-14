@@ -1,4 +1,4 @@
-import { DataFetcher } from '../../services/data-pulling-service/fetch-data.service';
+import { DataFetcher } from '../../src/services/data-pulling-service/fetch-data.service';
 import { mockChargingStationData } from '../mocks';
 
 interface OpenChargeMapServiceMock {

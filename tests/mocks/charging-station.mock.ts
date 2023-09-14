@@ -1,4 +1,4 @@
-import { ChargingStationInterface } from '../../interfaces';
+import { ChargingStationInterface } from '../../src/interfaces';
 
 export const mockChargingStationData: ChargingStationInterface = {
   _id: '123',
