@@ -19,7 +19,7 @@ describe('OpenChargeMapService', () => {
   it('fetchChargingStationData should return charging station data', async () => {
     axiosMock.onGet().reply(200, [mockChargingStationAxiosResponse]);
 
-    const chargingStations = await openChargeMapService.fetchChargingStationData();
+    const chargingStations = await openChargeMapService.fetchChargingStationData(1);
 
     expect(chargingStations).toHaveLength(1);
     expect(chargingStations[0]._id).toBe('123');
@@ -32,7 +32,7 @@ describe('OpenChargeMapService', () => {
   it('fetchChargingStationData should handle errors', async () => {
     axiosMock.onGet().reply(500, { error: 'Internal Server Error' });
 
-    await expect(openChargeMapService.fetchChargingStationData()).rejects.toThrowError(
+    await expect(openChargeMapService.fetchChargingStationData(1)).rejects.toThrowError(
       'Failed to fetch charging station data',
     );
   });
