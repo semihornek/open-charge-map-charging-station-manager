@@ -34,7 +34,7 @@ const resolvers = {
             ? chargingStations[chargingStations.length - 1].sequentialId
             : null;
 
-        // Calculate hasNextPage and hasPreviousPage based on the returned charging stations.
+        // Calculate hasNextPage and hasPreviousPage based on the returned total count.
         let hasNextPage = false;
         if (endCursor) hasNextPage = totalCount > endCursor;
 
