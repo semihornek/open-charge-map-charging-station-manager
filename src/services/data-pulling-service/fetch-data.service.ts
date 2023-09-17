@@ -10,9 +10,9 @@ export class DataFetcher {
     this.databaseService = databaseService;
   }
 
-  async fetchData() {
+  async fetchData(maxresults = 100) {
     try {
-      const chargingStations = await this.openChargeMapService.fetchChargingStationData();
+      const chargingStations = await this.openChargeMapService.fetchChargingStationData(maxresults);
 
       for (const chargingStation of chargingStations) {
         const isExistingStation = await this.databaseService.findIfChargingStationExists(

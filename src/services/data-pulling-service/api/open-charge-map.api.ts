@@ -10,13 +10,14 @@ dotenv.config();
 export class OpenChargeMapService {
   constructor() {}
 
-  async fetchChargingStationData(): Promise<ChargingStationInterface[]> {
+  async fetchChargingStationData(maxresults: number): Promise<ChargingStationInterface[]> {
     try {
       const response = await axios.get(OPEN_CHARGE_MAP_API_URL, {
         params: {
           output: 'json',
           key: process.env.OPEN_CHARGE_MAP_API_KEY,
           camelcase: true,
+          maxresults,
         },
       });
       const data: ChargingStationInterface[] = response.data.map((res: POIListInterface) => ({

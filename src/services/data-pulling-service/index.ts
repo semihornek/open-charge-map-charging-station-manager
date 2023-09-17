@@ -4,5 +4,5 @@ import { OpenChargeMapService } from './api';
 import { DataFetcher } from './fetch-data.service';
 
 const dataFetcher = new DataFetcher(new OpenChargeMapService(), DatabaseService.getInstance());
-dataFetcher.fetchData();
+dataFetcher.fetchData(1000);
 setInterval(() => dataFetcher.fetchData(), DATA_PULLING_INTERVAL);
