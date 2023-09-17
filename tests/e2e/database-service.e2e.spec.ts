@@ -7,6 +7,7 @@ describe('DatabaseService E2E Tests', () => {
   let databaseService: DatabaseService;
   const testData: ChargingStationInterface = {
     _id: 'testId',
+    sequentialId: 1,
     operatorInfo: null as never,
     statusType: null as never,
     addressInfo: null as never,
