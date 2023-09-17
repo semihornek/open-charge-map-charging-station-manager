@@ -23,6 +23,10 @@ const chargingStationSchema = new Schema<ChargingStationInterface>({
     type: Schema.Types.Mixed,
     default: null,
   },
+  sequentialId: {
+    type: Number,
+    default: 1,
+  },
 });
 
 export const ChargingStationModel = mongoose.model<ChargingStationInterface>(

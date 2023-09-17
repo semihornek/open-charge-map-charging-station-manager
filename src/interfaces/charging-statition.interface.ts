@@ -85,4 +85,5 @@ export interface ChargingStationInterface {
   statusType: StatusType;
   addressInfo: AddressInfo;
   connections: Connection[];
+  sequentialId: number;
 }

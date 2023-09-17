@@ -107,10 +107,26 @@ const typeDefs = `
     addressInfo: AddressInfo
     connections: [Connections]
   }
+  
+  # This "ChargingStationPagination" type defines the fields for paginated charging station data.
+  type ChargingStationPagination {
+    chargingStations: [ChargingStation!]!
+    totalCount: Int!
+    hasNextPage: Boolean!
+    hasPreviousPage: Boolean!
+    startCursor: Int
+    endCursor: Int
+  }
 
   # The "Query" type defines the available queries.
   type Query {
     chargingStations: [ChargingStation!]!
+    chargingStationsWithPagination(
+      first: Int
+      after: Int
+      last: Int
+      before: Int
+    ): ChargingStationPagination
   }
 `;
 
