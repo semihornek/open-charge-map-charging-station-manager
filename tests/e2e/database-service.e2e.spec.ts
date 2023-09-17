@@ -17,6 +17,7 @@ describe('DatabaseService E2E Tests', () => {
   beforeAll(async () => {
     // Create an instance of DatabaseService
     databaseService = DatabaseService.getInstance('mongodb://127.0.0.1:27017/open_charge_map_test');
+    await ChargingStationModel.deleteMany({});
   });
 
   afterAll(async () => {
